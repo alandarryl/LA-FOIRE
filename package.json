@@ -1,0 +1,23 @@
+{
+  "name": "la-foire",
+  "version": "1.0.0",
+  "description": "TP de B2 dev",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alandarryl/LA-FOIRE.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alandarryl/LA-FOIRE/issues"
+  },
+  "homepage": "https://github.com/alandarryl/LA-FOIRE#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
