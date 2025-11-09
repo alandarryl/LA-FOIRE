@@ -6,7 +6,7 @@ const User = require('../models/user.model');
 
 // Route pour créer un nouvel utilisateur
 
-router.post('/create/user', async (req, res) =>{
+router.post('/create', async (req, res) =>{
     try{
         //
 

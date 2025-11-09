@@ -92,5 +92,38 @@ router.delete('/delete/:id', async (req, res) =>{
     }
 })
 
+//trier les articles par prix 
+
+router.get('/sort/price/:order', async (req, res) =>{
+    try{
+        //
+
+        const order = req.params.order;
+        const sortOrder = order === 'asc' ? 1 : -1;
+
+        const articles = await Article.find().sort({prix: sortOrder});
+        res.status(200).json(articles);
+
+    } catch(error){
+        res.status(500).json({message: 'Erreur du serveur'});
+    }
+})
+
+//trier les articles par les note moyenne des avis
+
+router.get('/sort/rating/:order', async (req, res) =>{
+    try{
+        //
+
+        const order = req.params.order;
+        const sortOrder = order === 'asc' ? 1 : -1;
+        const articles = await Article.find().sort({averageRating: sortOrder});
+        res.status(200).json(articles);
+
+    } catch(error){
+        res.status(500).json({message: 'Erreur du serveur'});
+    }
+})
+
 module.exports = router;
 
