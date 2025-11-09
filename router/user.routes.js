@@ -78,6 +78,15 @@ router.put('/edit/:id', async (req, res) =>{
 router.delete('/delete/:id', async (req, res) =>{
     try{
         //
+
+        const userId = req.params.id;
+        const deletedUser = await User.findByIdAndDelete(userId);
+        if(!deletedUser){
+            return res.status(404).json({message: 'Utilisateur non trouvé'});
+        }
+        res.status(200).json({message: 'Utilisateur supprimé avec succès'});
+        
+
     } catch(error){
         res.status(500).json({message: 'Erreur du serveur'});
     }
