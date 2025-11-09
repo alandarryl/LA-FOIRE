@@ -107,9 +107,14 @@ router.get('/sort/price/:order', async (req, res) =>{
 
         const order = req.params.order;
         const sortOrder = order === 'asc' ? 1 : -1;
-
-        const articles = await Article.find().sort({prix: sortOrder});
+        const articles = await Article.find().sort({price: sortOrder});
         res.status(200).json(articles);
+
+        // const order = req.params.order;
+        // const sortOrder = order === 'asc' ? 1 : -1;
+
+        // const articles = await Article.find().sort({prix: sortOrder});
+        // res.status(200).json(articles);
 
     } catch(error){
         res.status(500).json({message: 'Erreur du serveur'});
