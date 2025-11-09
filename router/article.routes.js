@@ -25,6 +25,13 @@ router.post('/create', async (req, res) =>{
 router.get('/all', async (req, res) =>{
     try{
         //
+
+        const articles =  await Article.find()
+            .populate('user', 'prenom email')
+            .populate('avis');
+        res.status(200).json(articles);
+
+
     } catch(error){
         res.status(500).json({message: 'Erreur du serveur'});
     }
