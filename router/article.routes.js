@@ -1,0 +1,96 @@
+
+const express = require('express');
+const router = express.Router();
+const Article = require('../models/article.model');
+
+// Route pour créer un nouvel article
+
+router.post('/create/article', async (req, res) =>{
+    try{
+        //
+
+        const articleData = req.body;
+        const newArticle = new Article(articleData);
+        await newArticle.save();
+        res.status(201).json({message: 'Article créé avec succès', article: newArticle});
+
+    } catch(error){
+        res.status(500).json({message: 'Erreur du serveur'});
+    }
+});
+
+
+// Route pour récupérer tous les articles
+
+router.get('/articles', async (req, res) =>{
+    try{
+        //
+    } catch(error){
+        res.status(500).json({message: 'Erreur du serveur'});
+    }
+});
+
+// Route pour récupérer un article par son ID
+
+router.get('/article/:id', async (req, res) =>{
+    try{
+        //
+
+        const articleId = req.params.id;
+
+        const article = await Article.findById(articleId)
+            .populate('user', 'prenom email')
+            .populate('avis');
+
+        if(!article) return res.status(404).json({message: 'Article non trouvé'});
+
+        res.status(200).json(article);
+
+    } catch(error){
+        res.status(500).json({message: 'Erreur du serveur'});
+    }
+});
+
+// Route pour mettre à jour un article par son ID
+
+router.put('/edit/article/:id', async (req, res) =>{
+    try{
+        //
+
+        const articleId = req.params.id;
+        const updateData = req.body;
+
+        const updatedArticle = await Article.findByIdAndUpdate(articleId, updateData, {new: true});
+        if(!updatedArticle){
+            return res.status(404).json({message: 'Article non trouvé'});
+        }
+
+        res.status(200).json({message: 'Article mis à jour avec succès', article: updatedArticle});
+
+    } catch(error){
+        res.status(500).json({message: 'Erreur du serveur'});
+    }
+})
+
+// Route pour supprimer un article par son ID
+
+router.delete('/delete/article/:id', async (req, res) =>{
+    try{
+        //
+
+        const articleId = req.params.id;
+
+        const deletedArticle = await Article.findByIdAndDelete(articleId);
+
+        if(!deletedArticle){
+            return res.status(404).json({message: 'Article non trouvé'});
+        }
+        res.status(200).json({message: 'Article supprimé avec succès'});
+
+    } catch(error){
+        res.status(500).json({message: 'Erreur du serveur'});
+    }
+})
+
+module.exports = router;
+
