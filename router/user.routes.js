@@ -22,7 +22,7 @@ router.post('/create/user', async (req, res) =>{
 
 // Route pour récupérer tous les utilisateurs
 
-router.get('/users', async (req, res)=>{
+router.get('/all', async (req, res)=>{
     try{
         //
 
@@ -36,7 +36,7 @@ router.get('/users', async (req, res)=>{
 
 // Route pour récupérer un utilisateur par son ID
 
-router.get('/user/:id', async (req, res)=>{
+router.get('/:id', async (req, res)=>{
     try{
         //
 
@@ -55,7 +55,7 @@ router.get('/user/:id', async (req, res)=>{
 
 // Route pour mettre à jour un utilisateur par son ID
 
-router.put('/edit/user/:id', async (req, res) =>{
+router.put('/edit/:id', async (req, res) =>{
     try{
         //
 
@@ -75,7 +75,7 @@ router.put('/edit/user/:id', async (req, res) =>{
 
 // Route pour supprimer un utilisateur par son ID
 
-router.delete('/delete/user/:id', async (req, res) =>{
+router.delete('/delete/:id', async (req, res) =>{
     try{
         //
     } catch(error){

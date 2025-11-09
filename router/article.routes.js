@@ -5,7 +5,7 @@ const Article = require('../models/article.model');
 
 // Route pour créer un nouvel article
 
-router.post('/create/article', async (req, res) =>{
+router.post('/create', async (req, res) =>{
     try{
         //
 
@@ -22,7 +22,7 @@ router.post('/create/article', async (req, res) =>{
 
 // Route pour récupérer tous les articles
 
-router.get('/articles', async (req, res) =>{
+router.get('/all', async (req, res) =>{
     try{
         //
     } catch(error){
@@ -32,7 +32,7 @@ router.get('/articles', async (req, res) =>{
 
 // Route pour récupérer un article par son ID
 
-router.get('/article/:id', async (req, res) =>{
+router.get('/:id', async (req, res) =>{
     try{
         //
 
@@ -53,7 +53,7 @@ router.get('/article/:id', async (req, res) =>{
 
 // Route pour mettre à jour un article par son ID
 
-router.put('/edit/article/:id', async (req, res) =>{
+router.put('/edit/:id', async (req, res) =>{
     try{
         //
 
@@ -74,7 +74,7 @@ router.put('/edit/article/:id', async (req, res) =>{
 
 // Route pour supprimer un article par son ID
 
-router.delete('/delete/article/:id', async (req, res) =>{
+router.delete('/delete/:id', async (req, res) =>{
     try{
         //
 

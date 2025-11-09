@@ -1,11 +1,11 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const mongoose = require('mongoose');
+const app = express();
 
 dotenv.config();
 
-const app = express();
-
-const connectDB = require('./database/database');
+// const connectDB = require('./database/database');
 
 app.use(express.json());
 
@@ -14,16 +14,16 @@ const userRoutes = require('./router/user.routes');
 const articleRoutes = require('./router/article.routes');
 const avisRoutes = require('./router/avis.routes');
 
+// fonction de connexion a la base de données
+mongoose
+    .connect(process.env.MONGO_URI, {dbName: process.env.DB_NAME})
+    .then(() => console.log("connected to MongoDB"))
+    .catch((error) => console.log("error de connection a MongoDB : ", error));
 
 // utiliser les routes
-app.use('/api', userRoutes);
-app.use('/api', articleRoutes);
-app.use('/api', avisRoutes);
-
-// connection a la base de données
-connectDB();
-
-
+app.use('/api/users', userRoutes);
+app.use('/api/articles', articleRoutes);
+app.use('/api/avis', avisRoutes);
 
 const port = process.env.PORT || 3000;
 

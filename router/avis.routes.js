@@ -8,7 +8,7 @@ const Article = require('../models/article.model');
 
 // Route pour créer un nouvel avis
 
-router.post('/create/avis', async (req, res) =>{
+router.post('/create', async (req, res) =>{
     try{
         //
 
@@ -29,7 +29,7 @@ router.post('/create/avis', async (req, res) =>{
 
 // Route pour récupérer tous les avis
 
-router.get('/avis', async (req, res) =>{
+router.get('/all', async (req, res) =>{
     try{
         //
 
@@ -44,7 +44,7 @@ router.get('/avis', async (req, res) =>{
 
 // Route pour récupérer un avis par son ID
 
-router.get('/avis/:id', async (req, res) =>{
+router.get('/:id', async (req, res) =>{
     try{
         //
 
@@ -62,7 +62,7 @@ router.get('/avis/:id', async (req, res) =>{
 
 // Route pour mettre à jour un avis par son ID
 
-router.put('/edit/avis/:id', async (req, res) =>{
+router.put('/edit/:id', async (req, res) =>{
     try{
         //
 
@@ -81,7 +81,7 @@ router.put('/edit/avis/:id', async (req, res) =>{
 
 //delete avis
 
-router.delete('/delete/avis/:id', async (req, res) =>{
+router.delete('/delete/:id', async (req, res) =>{
     try{
         //
 
