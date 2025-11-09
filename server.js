@@ -12,11 +12,13 @@ app.use(express.json());
 //importer les routes
 const userRoutes = require('./router/user.routes');
 const articleRoutes = require('./router/article.routes');
+const avisRoutes = require('./router/avis.routes');
 
 
 // utiliser les routes
 app.use('/api', userRoutes);
 app.use('/api', articleRoutes);
+app.use('/api', avisRoutes);
 
 // connection a la base de données
 connectDB();
