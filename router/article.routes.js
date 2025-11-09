@@ -129,7 +129,7 @@ router.get('/sort/rating/:order', async (req, res) =>{
 
         const order = req.params.order;
         const sortOrder = order === 'asc' ? 1 : -1;
-        const articles = await Article.find().sort({averageRating: sortOrder});
+        const articles = await Article.find().sort({rating: sortOrder});
         res.status(200).json(articles);
 
     } catch(error){
