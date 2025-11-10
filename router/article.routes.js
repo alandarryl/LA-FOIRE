@@ -10,6 +10,12 @@ router.post('/create', async (req, res) =>{
         //
 
         const articleData = req.body;
+        // verifier si nous recevons au moi une image (img) principale et deux iamge secondaire 
+        const {img, img1, img2} = req.body;
+        if(!img || !img1 || !img2){
+            return  res.status(400).json({message: 'Au moins une image principale et deux images secondaires sont requises.'});
+        }
+
         const newArticle = new Article(articleData);
         await newArticle.save();
         res.status(201).json({message: 'Article créé avec succès', article: newArticle});
@@ -129,8 +135,28 @@ router.get('/sort/rating/:order', async (req, res) =>{
 
         const order = req.params.order;
         const sortOrder = order === 'asc' ? 1 : -1;
-        const articles = await Article.find().sort({rating: sortOrder});
+
+        const articles = await Article.aggregate([
+            {
+                $lookup: {
+                    from: 'avis',
+                    localField: 'avis',
+                    foreignField: '_id',
+                    as: 'avisDetails'
+                }
+            },
+            {
+                $addFields: {
+                    averageRating: { $avg: '$avisDetails.rating' }
+                }
+            },
+            {
+                $sort: { averageRating: sortOrder }
+            }
+        ]);
+
         res.status(200).json(articles);
+
 
     } catch(error){
         res.status(500).json({message: 'Erreur du serveur'});
